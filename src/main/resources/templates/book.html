@@ -42,53 +42,28 @@
   </div>
 </nav>
 <main class="container mt-3">
-    <div class="row">
    
+   <div class="row">
+    <div class="col-6">
+        <div class="card mb-3">
+            <img th:attr="href='https://bit.ly/36nF8P9'" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title" th:text="${book.name}"></h5>
+                <p class="card-text" th:text="${book.description}"></p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item" th:text="'Pages:' + ${book.pages}"></li>
+                <li class="list-group-item" th:text="'Score:' +${book.score}"></li>
+            </ul>
 
-  <div th:each="book: ${books}" class="card-deck">
-    <div class="card mb-4 mr-4" style="min-width: 18rem; max-width: 18rem;">
-      <img src="https://bit.ly/36nF8P9" class="card-img-top" alt="BookCoverImage" />
-      <div class="card-body">
-        <h5 class="card-title" th:text="${book.name}"></h5>
-		
-		<!-- Button trigger modal -->
-   <button type="button" class="btn btn-primary" data-bs-toggle="modal" th:attr="data-bs-target='#exampleModalLong' +  ${book.id}">
-    See Notes
-  </button>
-  
-  <!-- Modal -->
-  <div class="modal fade" th:attr="id='exampleModalLong' +  ${book.id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLong" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLong"> Notes</h5>  
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
         </div>
-        <div class="modal-body" th:text="${book.description}">
-          
-        </div>
-        <div class="modal-footer">
-          <a th:attr="href='/books/' +  ${book.id}" class="btn btn-primary">Go to Full Page</a>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <form class="d-inline" action="toadd" method="POST">
-            <button class="btn btn-danger">Delete</button>
-        </form>
-        </div>
-      </div>
     </div>
-  </div>
-		
-      </div>
-    </div>
-  </div>
-
-
-
-
-
-    </div>
+        
+       
+    
+    
+</div>
+   
 </main>
 
 
@@ -98,3 +73,6 @@
 </body>
 </html>
 
+
+
+ 

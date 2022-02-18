@@ -26,13 +26,13 @@ public class BookServiceImpl implements BookService {
 	@Override
 	public Book findById(int theId) {
 		// TODO Auto-generated method stub
-		return null;
+		return bookRepo.getById(theId);
 	}
 
 	@Override
 	public void save(Book theBook) {
 		// TODO Auto-generated method stub
-
+		bookRepo.save(theBook);
 	}
 
 	@Override

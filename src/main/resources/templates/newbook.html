@@ -59,7 +59,7 @@
 				<!-- Add error message (if present) -->
 				<span th:if="${#fields.hasErrors('name')}"
 					  th:errors="*{name}"
-					  class="badge badge-danger ml-2 mb-4"></span>
+					  class="text-danger"></span>
 				
 			</div>
 			
@@ -71,39 +71,38 @@
 				<!-- Add error message (if present) -->
 				<span th:if="${#fields.hasErrors('description')}"
 					  th:errors="*{description}"
-					  class="badge badge-danger ml-2 mb-4"></span>
+					  class="text-danger"></span>
 
 			</div>
 			
 			<div class="mb-3">
 			
-				<input type="Number" th:field="*{pages}" min="0" max="5"
+				<input type="text" th:field="*{pages}"
 						class="form-control mb-4 col-4" th:placeholder="Pages">
 				
 				<!-- Add error message (if present) -->
 				<span th:if="${#fields.hasErrors('pages')}"
 					  th:errors="*{pages}"
-					  class="badge badge-danger ml-2 mb-4"></span>
+					  class="text-danger"></span>
 
 			</div>
 			
 			<div class="mb-3">
 			
-				<input type="Number" th:field="*{score}"
+				<input type="text" th:field="*{score}"
 						class="form-control mb-4 col-4" th:placeholder="Score">
 				
 				<!-- Add error message (if present) -->
 				<span th:if="${#fields.hasErrors('score')}"
 					  th:errors="*{score}"
-					  class="badge badge-danger ml-2 mb-4"></span>
-
-			</div>
+					  class="text-danger"></span>
+				</div>
 							
 			<button type="submit" class="btn btn-info col-2">Save</button>
 						
 		</form>
   
-  
+ 
   
       <a href="/books">All Books</a>
   </div>

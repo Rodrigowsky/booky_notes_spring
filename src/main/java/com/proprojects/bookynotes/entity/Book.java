@@ -6,8 +6,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "books")
@@ -22,29 +24,32 @@ public class Book {
 	@Column(name = "name")
 	private String name;
 
-	@NotBlank(message = "is required")
+	@NotNull(message = "is required")
 	@Column(name = "pages")
-	private int pages;
+	private Integer pages;
 
 	@NotBlank(message = "is required")
 	@Column(name = "description")
 	private String description;
 
-	@Size(min = 0, max = 5, message = "Only between 0 and 5")
-	private int score;
+	@NotNull(message = "is required")
+	@Min(0)
+	@Max(5)
+	@Column(name = "score")
+	private Integer score;
 
 	public Book() {
 
 	}
 
-	public Book(String name, int pages, String description, int score) {
+	public Book(String name, Integer pages, String description, Integer score) {
 		this.name = name;
 		this.pages = pages;
 		this.description = description;
 		this.score = score;
 	}
 
-	public Book(int id, String name, int pages, String description, int score) {
+	public Book(int id, String name, Integer pages, String description, Integer score) {
 		this.id = id;
 		this.name = name;
 		this.pages = pages;
@@ -68,11 +73,11 @@ public class Book {
 		this.name = name;
 	}
 
-	public int getPages() {
+	public Integer getPages() {
 		return pages;
 	}
 
-	public void setPages(int pages) {
+	public void setPages(Integer pages) {
 		this.pages = pages;
 	}
 
@@ -84,11 +89,11 @@ public class Book {
 		this.description = description;
 	}
 
-	public int getScore() {
+	public Integer getScore() {
 		return score;
 	}
 
-	public void setScore(int score) {
+	public void setScore(Integer score) {
 		this.score = score;
 	}
 
