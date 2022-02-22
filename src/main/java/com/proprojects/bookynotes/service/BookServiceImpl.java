@@ -38,6 +38,7 @@ public class BookServiceImpl implements BookService {
 	@Override
 	public void deleteById(int theId) {
 		// TODO Auto-generated method stub
+		bookRepo.deleteById(theId);
 
 	}
 

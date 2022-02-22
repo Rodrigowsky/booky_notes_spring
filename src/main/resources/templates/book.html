@@ -55,7 +55,7 @@
                 <li class="list-group-item" th:text="'Pages:' + ${book.pages}"></li>
                 <li class="list-group-item" th:text="'Score:' +${book.score}"></li>
             </ul>
-
+			<a th:attr="href='/books/' +  ${book.id} + '/update'" class="btn btn-primary">Edit Book</a>
         </div>
     </div>
         

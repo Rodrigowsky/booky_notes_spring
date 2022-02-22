@@ -29,6 +29,7 @@ public class BookController {
 		bookService = theBookService;
 	}
 
+	// show books main page route
 	@GetMapping("/books")
 	public String listBooks(Model theModel) {
 
@@ -39,6 +40,7 @@ public class BookController {
 		return "list-books";
 	}
 
+	// show form to create new book
 	@GetMapping("/books/new")
 	public String showFormForNewEntry(Model theModel) {
 		Book theBook = new Book();
@@ -48,15 +50,31 @@ public class BookController {
 		return "newbook";
 	}
 
-	@GetMapping("/books/update")
-	public String showFormForUpdateBook(@RequestParam("bookId") int theId, Model theModel) {
+	// show form for update
+	@RequestMapping(value = "/books/{bookId}/update", method = RequestMethod.GET)
+	public String showFormForUpdateBook(@PathVariable("bookId") int theId, Model theModel) {
 		Book theBook = bookService.findById(theId);
 
 		theModel.addAttribute("book", theBook);
 
-		return "newbook";
+		return "editbook";
 	}
 
+	// handle form for update
+	@PostMapping(value = "/books/update")
+	public String handleFormForUpdateBook(@ModelAttribute("book") @Valid Book theBook, BindingResult bindingResult) {
+		if (bindingResult.hasErrors()) {
+			return "newbook";
+		} else {
+
+			bookService.save(theBook);
+
+			// use a redirect to prevent duplicate submissions
+			return "redirect:/books/" + theBook.getId();
+		}
+	}
+
+	// show specific book route handler
 	@RequestMapping(value = "/books/{bookId}", method = RequestMethod.GET)
 	public String showBook(@PathVariable("bookId") int theId, Model theModel) {
 
@@ -67,6 +85,7 @@ public class BookController {
 		return "book";
 	}
 
+	// save new new book
 	@PostMapping("/books/new/save")
 	public String saveBook(@ModelAttribute("book") @Valid Book theBook, BindingResult bindingResult) {
 
@@ -79,6 +98,18 @@ public class BookController {
 			// use a redirect to prevent duplicate submissions
 			return "redirect:/books";
 		}
+	}
+
+	@GetMapping("books/delete")
+	public String delete(@RequestParam("bookId") int theId) {
+		System.out.println("Entrou");
+		System.out.println(theId);
+		// delete the book
+		bookService.deleteById(theId);
+
+		// redirect to /books/list
+		return "redirect:/books";
+
 	}
 
 }
