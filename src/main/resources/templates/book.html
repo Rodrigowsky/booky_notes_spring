@@ -58,7 +58,15 @@
 			<a th:attr="href='/books/' +  ${book.id} + '/update'" class="btn btn-primary">Edit Book</a>
         </div>
     </div>
-        
+    
+    <div>
+    	<p>Hello</p>
+    </div>
+    
+    <div th:if="${book.notes.size() != 0}" th:each="book: ${book}">
+    	<p th:text="${book.notes}"></p>
+    </div>
+    
        
     
     

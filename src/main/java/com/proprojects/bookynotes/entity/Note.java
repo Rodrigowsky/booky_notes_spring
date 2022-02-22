@@ -1,11 +1,15 @@
 package com.proprojects.bookynotes.entity;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
+@Entity
+@Table(name = "notes")
 public class Note {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,22 +17,28 @@ public class Note {
 	private int id;
 
 	@NotBlank(message = "is required")
-	@Column(name = "tile")
+	@Column(name = "title")
 	private String title;
 
 	@NotBlank(message = "is required")
 	@Column(name = "body")
 	private String body;
 
-	@Column(name = "book")
-	private String book;
+	public Note(int id, @NotBlank(message = "is required") String title,
+			@NotBlank(message = "is required") String body) {
 
-	public Note(int id, @NotBlank(message = "is required") String title, @NotBlank(message = "is required") String body,
-			String book) {
 		this.id = id;
 		this.title = title;
 		this.body = body;
-		this.book = book;
+	}
+
+	public Note(@NotBlank(message = "is required") String title, @NotBlank(message = "is required") String body) {
+		super();
+		this.title = title;
+		this.body = body;
+	}
+
+	public Note() {
 	}
 
 	public int getId() {
@@ -55,12 +65,9 @@ public class Note {
 		this.body = body;
 	}
 
-	public String getBook() {
-		return book;
-	}
-
-	public void setBook(String book) {
-		this.book = book;
+	@Override
+	public String toString() {
+		return "Note [title=" + title + ", body=" + body + "]";
 	}
 
 }
